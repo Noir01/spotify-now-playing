@@ -1,0 +1,44 @@
+{
+  "name": "spotify-now-playing",
+  "main": "src/index.js",
+  "workers_dev": false,
+  "preview_urls": false,
+  "compatibility_date": "2025-03-27",
+  "routes": [
+    {
+      "pattern": "spotify.noir.ac",
+      "zone_name": "noir.ac",
+      "custom_domain": true
+    }
+  ],
+  "observability": {
+    "enabled": true,
+    "head_sampling_rate": 1,
+    "logs": {
+      "enabled": true,
+      "head_sampling_rate": 1,
+      "persist": true,
+      "invocation_logs": true
+    },
+    "traces": {
+      "enabled": false,
+      "persist": true,
+      "head_sampling_rate": 1
+    }
+  },
+  "kv_namespaces": [
+    {
+      "id": "5cc9d4cbabed43d0a9178162269c0d1b",
+      "binding": "SONG_CACHE"
+    }
+  ],
+  "placement": {
+    "mode": "smart"
+  },
+  // Secrets are stored in .dev.vars (local) and wrangler secrets (production).
+  // Run: wrangler secret put SPOTIFY_ACCESS_TOKEN
+  //      wrangler secret put SPOTIFY_CLIENT_ID
+  //      wrangler secret put SPOTIFY_CLIENT_SECRET
+  //      wrangler secret put SPOTIFY_REFRESH_TOKEN
+  "vars": {}
+}
