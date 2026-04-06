@@ -1,6 +1,17 @@
 // src/index.ts
 var index_default = {
   async fetch(_request, env, _ctx) {
+    if (_request.method === "OPTIONS") {
+      return new Response(null, {
+        status: 204,
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Methods': 'GET, OPTIONS',
+          'Access-Control-Allow-Headers': '*',
+        },
+      });
+    }
+
     const NOW_PLAYING_KEY  = "NOW_PLAYING";
     try {
       const cached = await env.SONG_CACHE.get(NOW_PLAYING_KEY);
